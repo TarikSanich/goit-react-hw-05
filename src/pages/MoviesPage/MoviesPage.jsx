@@ -14,6 +14,7 @@ export default function MoviesPage() {
   const [value, setValue] = useState('');
   const query = searchParams.get('query') ?? '';
 
+
   const onFormSubmit = e => {
     e.preventDefault();
     if (value === '') {
@@ -51,7 +52,7 @@ export default function MoviesPage() {
     getData();
   }, [query]);
 
-
+ 
   const changeMovieFilter = e => {
     setValue(e.target.value);
   };

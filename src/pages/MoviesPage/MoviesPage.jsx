@@ -12,10 +12,8 @@ export default function MoviesPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [value, setValue] = useState('');
-  // URLSearchParams.get(key), wait for 'key', return  value або null
   const query = searchParams.get('query') ?? '';
 
-  //ф-ція зміни параметрів запиту
   const onFormSubmit = e => {
     e.preventDefault();
     if (value === '') {
@@ -24,7 +22,7 @@ export default function MoviesPage() {
       return;
     }
     setSearchParams({ query: value });
-    setValue(''); // чистити input після сабміту
+    setValue(''); 
   };
 
   useEffect(() => {
@@ -53,12 +51,12 @@ export default function MoviesPage() {
     getData();
   }, [query]);
 
-  // ф-ція обробки input
+
   const changeMovieFilter = e => {
     setValue(e.target.value);
   };
 
-  //ф-ція фільтрації масиву movies за запитом
+
   const filteredMovies = movies.filter(movie =>
     movie.title.toLowerCase().includes(query.toLowerCase())
   );

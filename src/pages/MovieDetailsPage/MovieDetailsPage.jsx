@@ -6,9 +6,6 @@ import { getMovieById } from '../../movies-api';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function MovieDetailsPage() {
-  //отримання значення параметрів від url
-  //   const params = useParams();
-  //   console.log(params);
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(false);

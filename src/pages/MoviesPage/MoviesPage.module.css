@@ -6,12 +6,6 @@
   padding: 4px 24px;
   background-color: rgb(10, 10, 190);
 }
-/* .form {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  align-items: center;
-} */
 .btn {
   position: absolute;
   left: 4px;

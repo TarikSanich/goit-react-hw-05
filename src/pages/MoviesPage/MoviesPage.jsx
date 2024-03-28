@@ -14,11 +14,9 @@ export default function MoviesPage() {
   const [value, setValue] = useState('');
   const query = searchParams.get('query') ?? '';
 
-
   const onFormSubmit = e => {
     e.preventDefault();
     if (value === '') {
-      alert("Can't find movies while input field is empty");
       toast.error('Please enter text to search movies!');
       return;
     }
@@ -30,17 +28,17 @@ export default function MoviesPage() {
     if (!query) {
       return;
     }
+
     async function getData() {
       try {
         setIsLoading(true);
         const data = await searchMovies(query);
 
-        if (data.results.length == 0) {
-          alert(`Sorry don't found any by query: ${query}`);
-          toast.error('Please try another query!');
-          return;
+        if (data.results.length === 0) {
+          toast.error(`Sorry, no movies found for query: ${query}`);
+        } else {
+          setMovies(data.results);
         }
-        setMovies(data.results);
       } catch (error) {
         setError(true);
         console.error(error);
@@ -49,18 +47,13 @@ export default function MoviesPage() {
         setIsLoading(false);
       }
     }
+
     getData();
   }, [query]);
 
- 
-  const changeMovieFilter = e => {
-    setValue(e.target.value);
+  const changeMovieFilter = event => {
+    setValue(event.target.value);
   };
-
-
-  const filteredMovies = movies.filter(movie =>
-    movie.title.toLowerCase().includes(query.toLowerCase())
-  );
 
   return (
     <div className={css.container}>
@@ -72,7 +65,7 @@ export default function MoviesPage() {
       />
       {isLoading && <b>Loading search movies...</b>}
       {error && <b>HTTP error!🤔</b>}
-      <MovieList movies={filteredMovies} />
+      <MovieList movies={movies} />
     </div>
   );
 }
